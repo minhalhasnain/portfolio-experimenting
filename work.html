@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Minhal</title>
+<link rel="stylesheet" href="style.css">
+
+<!--
+  HOW TO EDIT: each campaign is its own <div class="case"> block.
+  Impact lines use general language since no hard numbers were
+  given — replace with real metrics (attendance, sign-ups,
+  engagement) whenever you have them, in the .impact-line spots.
+-->
+
+<style>
+  .page-hero { padding: 120px 0 20px; }
+  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; }
+  .page-hero p { font-family: 'EB Garamond', serif; font-size: 1.05rem; color: var(--navy-soft); max-width: 60ch; margin-top: 16px; }
+
+  .case { padding: 70px 0; border-top: 1px solid var(--navy-faint); }
+  .case-head { margin-bottom: 36px; }
+  .case-org { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy-soft); margin-bottom: 10px; }
+  .case-title { font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; margin-bottom: 14px; }
+  .case-desc { font-family: 'EB Garamond', serif; font-size: 1.1rem; line-height: 1.75; max-width: 68ch; margin-bottom: 10px; }
+  .impact-line { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--navy-soft); max-width: 68ch; }
+
+  .case-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px; }
+  .case-gallery.two-col { grid-template-columns: repeat(2, 1fr); }
+  .case-gallery.four-col { grid-template-columns: repeat(4, 1fr); }
+  .case-gallery img { width: 100%; height: 320px; object-fit: contain; background: var(--grey); border: 1px solid var(--navy-faint); display: block; }
+  .case-gallery figure { margin: 0; }
+  .case-gallery figcaption { font-family: 'Inter', sans-serif; font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--navy-soft); margin-top: 8px; }
+
+  .process-note {
+    background: var(--grey); border-left: 3px solid var(--navy);
+    padding: 14px 18px; margin-top: 28px;
+    font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--navy-soft); line-height: 1.6;
+    max-width: 68ch;
+  }
+  .process-note strong { color: var(--navy); }
+
+  .case-split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 44px; align-items: start; }
+  .case-split-img img { width: 100%; display: block; border: 1px solid var(--navy-faint); }
+  .case-split-img .case-link { display: inline-block; margin-top: 12px; font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.05em; border-bottom: 1px solid var(--navy-faint); padding-bottom: 2px; }
+  .case-split-img .process-note { margin-top: 22px; }
+  .case-split-img .impact-line { margin-top: 16px; }
+  .sample-copy { background: var(--grey); border-left: 3px solid var(--teal); padding: 16px 20px; margin: 22px 0; max-width: 68ch; }
+  .sample-copy .sample-label { font-family: 'Inter', sans-serif; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy-soft); margin-bottom: 8px; }
+  .sample-copy p { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.02rem; line-height: 1.7; }
+  .sample-copy a { border-bottom: 1px solid var(--navy-faint); }
+
+  @media (max-width: 760px) {
+    .case-split { grid-template-columns: 1fr; }
+  }
+
+  .art-teaser-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 30px; flex-wrap: wrap; gap: 10px; }
+  .view-all { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.05em; border-bottom: 1px solid var(--navy-faint); padding-bottom: 2px; }
+
+  @media (max-width: 860px) {
+    .case-gallery, .case-gallery.two-col, .case-gallery.four-col { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .case-gallery, .case-gallery.two-col, .case-gallery.four-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a class="mark" href="index.html"><img src="images/signature.png" alt="Minhal — signature"></a>
+<nav class="nav-desktop">
+  <a class="nav-link" href="work.html">Campaigns</a>
+  <a class="nav-link" href="writing.html">Writing</a>
+  <a class="nav-link" href="art.html">Visual Art</a>
+  <a class="nav-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</nav>
+<div class="nav-mobile-toggle" id="hamburger"><span></span></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="work.html">Campaigns</a>
+  <a class="mobile-link" href="writing.html">Writing</a>
+  <a class="mobile-link" href="art.html">Visual Art</a>
+  <a class="mobile-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</div>
+
+<div class="wrap page-hero">
+  <h1 class="display">Work</h1>
+  <p>Campaign design and event branding for UBC eProjects, alongside my visual art practice. Full case studies below — process included where it exists, not just finished posters.</p>
+</div>
+
+<!-- WHERE IN THE WORLD WAS THIS PHOTO TAKEN -->
+<div class="wrap case" id="where-in-the-world">
+  <div class="case-split">
+    <div class="case-split-img">
+      <img src="images/where-in-the-world-hero.gif" alt="Where in the World Was This Photo Taken — UBC Magazine interactive quiz hero image">
+      <a class="case-link" href="https://magazine.alumni.ubc.ca/2026/quizzes/community/where-world-was-photo-taken" target="_blank" rel="noopener">View the live quiz &#8599;</a>
+      <div class="process-note"><strong>Process:</strong> the quiz's goal was to reinforce the magazine's existing My Town series &mdash; each confirmation text teaches readers a fact about the location while leading them to the full alum story behind it. Built on the magazine's website platform, Drupal.</div>
+      <p class="impact-line">Over 1,000 page visits, and featured on the alumni newsletter.</p>
+    </div>
+    <div class="case-head" style="margin-bottom:0;">
+      <div class="case-org">Interactive Quiz &mdash; UBC Alumni Magazine</div>
+      <h2 class="case-title display">Where in the World Was This Photo Taken?</h2>
+      <p class="case-desc">A collaborative interactive quiz built with my digital editor for UBC Alumni Magazine's My Town series, which highlights UBC alumni living around the world. Readers guess the location of a photo, then get a fact about that place along with a link to the full My Town story behind it.</p>
+      <p class="case-desc"><strong>My role:</strong> I wrote the intro body copy, plus the confirmation text for each question &mdash; the copy revealed once a reader selects their answer.</p>
+      <div class="sample-copy">
+        <div class="sample-label">Sample confirmation text &mdash; Tokyo</div>
+        <p>A comforting dish that consists of pouring green tea or hot water over cooked rice, then adding an assortment of savoury toppings, ochazuke was one of Hannah Edward&rsquo;s (BA&rsquo;22) favourite meals during the three years she spent in Tokyo. Check out her <a href="https://magazine.alumni.ubc.ca/2025/my-town/tokyo-japan" target="_blank" rel="noopener">My Town feature</a> on Japan&rsquo;s bustling capital if you&rsquo;re thinking of visiting this popular tourist destination.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LAUNCH PARTY -->
+<div class="wrap case" id="launch-party">
+  <div class="case-head">
+    <div class="case-org">UBC eProjects</div>
+    <h2 class="case-title display">Launch Party</h2>
+    <p class="case-desc">eProjects' first event of the year, built around a launch-to-space concept — the idea being that the club's ideas would be "launched" now and explored further as the year went on.</p>
+    <p class="impact-line">This became the club's first event to draw real buzz and attention on campus.</p>
+  </div>
+  <div class="process-note"><strong>Process:</strong> hand-drawn sketch → digitally painted concept → final flat vector design, adapted for both a portrait poster and a wide LinkedIn/banner crop.</div>
+  <div class="case-gallery four-col">
+    <figure><img src="images/eprojects-campaigns/launch-party-sketch.jpg" alt="Launch Party hand-drawn sketch"><figcaption>1. Sketch</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/launch-party-painted.jpg" alt="Launch Party painted concept"><figcaption>2. Painted concept</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/launch-party-final-portrait.jpg" alt="Launch Party final poster"><figcaption>3. Final poster</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/launch-party-final-wide.jpg" alt="Launch Party wide banner"><figcaption>4. Wide / LinkedIn crop</figcaption></figure>
+  </div>
+</div>
+
+<!-- EXECUTIVE LOUNGE -->
+<div class="wrap case" id="executive-lounge">
+  <div class="case-head">
+    <div class="case-org">UBC eProjects — Flagship Event</div>
+    <h2 class="case-title display">Executive Lounge</h2>
+    <p class="case-desc">eProjects' flagship event, bringing in 20 delegates to share their experience in their roles and as founders of their own companies. I collated the full branded guidebook, from cover to logistics, via Canva.</p>
+    <p class="impact-line">The most ambitious piece of event branding I've done for the club alongside my team — a multi-page guidebook rather than a single poster.</p>
+  </div>
+  <div class="case-gallery">
+    <figure><img src="images/eprojects-campaigns/exec-lounge-cover.jpg" alt="Executive Lounge guidebook cover"><figcaption>Guidebook cover</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/exec-lounge-itinerary.jpg" alt="Executive Lounge event itinerary page"><figcaption>Event itinerary</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/exec-lounge-menu.jpg" alt="Executive Lounge menu page"><figcaption>Menu page</figcaption></figure>
+  </div>
+</div>
+
+<!-- ACCELERATE -->
+<div class="wrap case" id="accelerate">
+  <div class="case-head">
+    <div class="case-org">UBC eProjects</div>
+    <h2 class="case-title display">Accelerate</h2>
+    <p class="case-desc">An event connecting students directly with startup accelerators — built on the idea that once ideas are formed, they need to be accelerated. I followed the initial poster with a "24 hours left" urgency post to drive last-minute turnout.</p>
+    <p class="impact-line">A two-part push: an announcement poster, then a countdown reminder closer to the date.</p>
+  </div>
+  <div class="process-note"><strong>Process:</strong> the poster's color story started as an ideation/gradient study before landing on the final blue-to-red palette. Designed in Adobe Fresco and Canva.</div>
+  <div class="case-gallery">
+    <figure><img src="images/eprojects-campaigns/accelerate-poster.jpg" alt="Accelerate campaign poster"><figcaption>Announcement poster</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/accelerate-countdown.jpg" alt="Accelerate 24 hours left poster"><figcaption>Countdown follow-up</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/accelerate-color-ideation.jpg" alt="Accelerate color ideation study"><figcaption>Color ideation</figcaption></figure>
+  </div>
+</div>
+
+<!-- MASCOT REVAMP -->
+<div class="wrap case" id="mascot-revamp">
+  <div class="case-head">
+    <div class="case-org">UBC eProjects — Brand Refresh</div>
+    <h2 class="case-title display">eBulb Mascot Revamp</h2>
+    <p class="case-desc">eProjects' mascot, eBulb, needed to be modernized to match the club's updated "e" lightbulb logo. I collaborated with a teammate on mascot ideation, working through color, eyes, blush, and base options before landing on the final design.</p>
+    <p class="impact-line">A deliberate design-system approach rather than a single redraw: every variable was tested before the final mascot was locked in.</p>
+  </div>
+  <div class="process-note"><strong>Process:</strong> old mascot → build-your-own ideation sheet (color, eyes, blush, base options tested systematically) → final revamped mascot matching the modern logo. Designed in Adobe Fresco and Illustrator.</div>
+  <div class="case-gallery">
+    <figure><img src="images/eprojects-campaigns/mascot-before.png" alt="Former eBulb mascot" style="object-fit:contain; background:var(--grey);"><figcaption>Before</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/mascot-ideation-sheet.jpg" alt="eBulb mascot ideation sheet"><figcaption>Ideation sheet</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/mascot-after-revamped.png" alt="Revamped eBulb mascot" style="object-fit:contain; background:var(--grey);"><figcaption>After — final mascot</figcaption></figure>
+  </div>
+</div>
+
+<!-- STICKER SERIES -->
+<div class="wrap case" id="sticker-series">
+  <div class="case-head">
+    <div class="case-org">UBC eProjects — Brand Identity</div>
+    <h2 class="case-title display">Sticker Series</h2>
+    <p class="case-desc">A set of five digital stickers designed to capture the club's energy and constant innovation — artistic and expressive rather than a plain brand logo.</p>
+    <p class="impact-line">Drove higher visibility and curiosity — first-year students asked about the club specifically because of the stickers.</p>
+  </div>
+  <div class="process-note"><strong>Process:</strong> hand-drawn digitally in Adobe Fresco.</div>
+  <div class="case-gallery" style="grid-template-columns: repeat(5, 1fr);">
+    <figure><img src="images/eprojects-stickers/sticker-magenta-e.png" alt="Magenta e sticker" style="object-fit:contain; background:var(--grey); height:200px;"></figure>
+    <figure><img src="images/eprojects-stickers/sticker-tech-collage.png" alt="Tech collage sticker" style="object-fit:contain; background:var(--grey); height:200px;"></figure>
+    <figure><img src="images/eprojects-stickers/sticker-super-startup.png" alt="Super Startup sticker" style="object-fit:contain; background:var(--grey); height:200px;"></figure>
+    <figure><img src="images/eprojects-stickers/sticker-star-cityscape.png" alt="Star cityscape sticker" style="object-fit:contain; background:var(--grey); height:200px;"></figure>
+    <figure><img src="images/eprojects-stickers/sticker-magenta-logo.png" alt="Magenta logo sticker" style="object-fit:contain; background:var(--grey); height:200px;"></figure>
+  </div>
+</div>
+
+<!-- MERCH -->
+<div class="wrap case" id="merch">
+  <div class="case-head">
+    <div class="case-org">UBC eProjects</div>
+    <h2 class="case-title display">Club Merch</h2>
+    <p class="case-desc">Hoodie and quarter-zip designs for eProjects — "Where Startups Begin," built around the same visual language as the sticker series and mascot. Merch produced by Merch Project.</p>
+  </div>
+  <div class="process-note"><strong>Process:</strong> hand-drawn and vectorized in Adobe Fresco.</div>
+  <div class="case-gallery two-col">
+    <figure><img src="images/eprojects-campaigns/merch-hoodie.png" alt="eProjects hoodie mockup, front and back" style="object-fit:contain; background:var(--grey);"><figcaption>Hoodie — front &amp; back</figcaption></figure>
+    <figure><img src="images/eprojects-campaigns/merch-quarterzip-vector.png" alt="eProjects quarter-zip vector design" style="object-fit:contain; background:var(--navy);"><figcaption>Quarter-zip design</figcaption></figure>
+  </div>
+</div>
+
+<!-- VISUAL ART -->
+<div class="wrap case" id="visual-art">
+  <div class="art-teaser-head">
+    <div>
+      <div class="case-org">Visual Art</div>
+      <h2 class="case-title display">Painting &amp; Graphite</h2>
+    </div>
+    <a class="view-all" href="art.html">View the full Visual Art portfolio →</a>
+  </div>
+  <p class="case-desc">Alongside campaign work, an ongoing practice in painting and graphite — including <a href="graphite.html" style="border-bottom:1px solid var(--navy-faint);">A World in Graphite</a>, a dedicated collection of pencil and charcoal pieces.</p>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="display">Let's talk about a piece, a project, or creative work.</h2>
+        <div class="contact-row">
+      <a href="mailto:minhal.hasnain@outlook.com">minhal.hasnain@outlook.com</a>
+      <a href="https://www.linkedin.com/in/minhal-hasnain-a8464b2b0/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/spilling.ink.mh/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="fine-print">Portfolio of Minhal — Updated 2026</div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); });
+  });
+</script>
+
+</body>
+</html>

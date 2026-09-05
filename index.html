@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minhal — Portfolio</title>
+<link rel="stylesheet" href="style.css">
+
+<!--
+  ============================================================
+  HOW TO EDIT THIS FILE
+  ============================================================
+  Shared colors, fonts, and nav live in style.css. This file is
+  the homepage: hero + curated teasers of Work, Writing, and
+  Visual Art, each linking to their full page.
+
+  RÉSUMÉ — the "#" links next to "Résumé" need a real file.
+  Add resume.pdf to this folder and change href="#" to
+  href="resume.pdf" everywhere it appears (nav + hero + footer).
+  ============================================================
+-->
+
+<style>
+  /* ---------- HERO ---------- */
+  .hero { padding: 116px 0 46px; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: 40px; }
+  .hero-statement {
+    font-size: clamp(1.7rem, 3vw, 2.7rem);
+    font-weight: 700;
+    line-height: 1.16;
+    max-width: 15ch;
+    margin-bottom: 18px;
+  }
+  .hero-sub {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.02rem;
+    color: var(--navy-soft);
+    max-width: 44ch;
+    margin-bottom: 26px;
+  }
+  .hero-sub strong { color: var(--navy); font-weight: 600; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: 'Inter', sans-serif; font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--navy); color: var(--cream); padding: 13px 24px; border: 1px solid var(--navy);
+  }
+  .btn-secondary {
+    font-family: 'Inter', sans-serif; font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 13px 24px; border: 1px solid var(--navy-faint);
+  }
+
+  /* ---------- HERO VISUALS — text + one large image left, 2x2 grid right ---------- */
+  .hero-left { display: flex; flex-direction: column; gap: 26px; }
+  .hero-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-content: start;
+  }
+  .hero-right .hero-tile { aspect-ratio: 1; }
+  .hero-tile {
+    position: relative; display: block; overflow: hidden;
+    border: 1px solid var(--navy-faint); background: var(--grey);
+  }
+  .hero-left .hero-tile { flex: 1; min-height: 280px; }
+  .hero-tile img, .hero-tile video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .hero-tile:hover img, .hero-tile:hover video { transform: scale(1.035); }
+  .hero-tile .cap {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(16,41,55,0.85) 0%, rgba(16,41,55,0.4) 55%, transparent 100%);
+  }
+  .hero-tile .cap .t { font-family: 'Libre Baskerville', serif; font-weight: 700; color: var(--cream); font-size: 0.82rem; line-height: 1.2; }
+  .hero-tile .cap .m { font-family: 'Inter', sans-serif; font-size: 0.58rem; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(252,250,249,0.78); margin-top: 3px; }
+  .hero-left .hero-tile .cap .t { font-size: 1.05rem; }
+  .hero-left .hero-tile .cap .m { font-size: 0.62rem; }
+
+  @media (max-width: 1080px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-left .hero-tile { min-height: 320px; }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 70px 0; border-top: 1px solid var(--navy-faint); }
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 40px; flex-wrap: wrap; gap: 10px; }
+  .section-eyebrow { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy-soft); margin-bottom: 8px; }
+  .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; }
+  .view-all { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 0.05em; border-bottom: 1px solid var(--navy-faint); padding-bottom: 2px; }
+
+  /* ---------- CAMPAIGNS TEASER ---------- */
+  .campaign-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .campaign-card { border: 1px solid var(--navy-faint); display: block; transition: opacity 0.25s ease; }
+  .campaign-card:hover { opacity: 0.85; }
+  .campaign-img { height: 200px; overflow: hidden; background: var(--grey); }
+  .campaign-img img { width: 100%; height: 100%; object-fit: cover; }
+  .campaign-body { padding: 16px 18px; }
+  .campaign-body .org { font-family: 'Inter', sans-serif; font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--navy-soft); margin-bottom: 6px; }
+  .campaign-body .title { font-family: 'Libre Baskerville', serif; font-size: 1.02rem; font-weight: 700; margin-bottom: 8px; }
+  .campaign-body .impact { font-family: 'EB Garamond', serif; font-style: italic; font-size: 0.92rem; color: var(--navy-soft); }
+
+  /* ---------- WRITING TEASER ---------- */
+  .writing-section { background: var(--grey); }
+  .writing-grid { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 20px; }
+  .writing-card { border: 1px solid var(--navy-faint); padding: 24px; display: block; background: var(--cream); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .writing-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(16,41,55,0.1); }
+  .writing-card.featured { background: var(--navy); color: var(--cream); }
+  .writing-card .genre { margin-bottom: 12px; }
+  .writing-card.featured .genre { color: rgba(252,250,249,0.6); }
+  .writing-card h3 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+  .writing-card p { font-family: 'EB Garamond', serif; font-style: italic; font-size: 0.92rem; color: var(--navy-soft); line-height: 1.55; }
+  .writing-card.featured p { color: rgba(252,250,249,0.75); }
+
+  /* ---------- ART TEASER ---------- */
+  .art-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .art-card { border: 1px solid var(--navy-faint); display: block; transition: opacity 0.25s ease; }
+  .art-card:hover { opacity: 0.85; }
+  .art-img { height: 260px; overflow: hidden; }
+  .art-img img { width: 100%; height: 100%; object-fit: cover; }
+  .art-caption { padding: 12px 4px 0; }
+  .art-caption .t { font-family:'Libre Baskerville', serif; font-size: 0.95rem; font-weight: 700; }
+  .art-caption .m { font-family:'Inter', sans-serif; font-size: 0.68rem; color: var(--navy-soft); margin-top: 3px; }
+
+  /* ---------- ABOUT STRIP ---------- */
+  .about-strip { display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; align-items: center; }
+  .about-strip img { width: 100%; height: 220px; object-fit: cover; border: 1px solid var(--navy-faint); object-position: center 15%; }
+  .about-strip p { font-family: 'EB Garamond', serif; font-size: 1.05rem; line-height: 1.7; margin-bottom: 16px; }
+
+  @media (max-width: 860px) {
+    .campaign-grid, .art-grid { grid-template-columns: 1fr; }
+    .writing-grid { grid-template-columns: 1fr; }
+    .about-strip { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a class="mark" href="index.html"><img src="images/signature.png" alt="Minhal — signature"></a>
+<nav class="nav-desktop">
+  <a class="nav-link" href="work.html">Campaigns</a>
+  <a class="nav-link" href="writing.html">Writing</a>
+  <a class="nav-link" href="art.html">Visual Art</a>
+  <a class="nav-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</nav>
+<div class="nav-mobile-toggle" id="hamburger"><span></span></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="work.html">Campaigns</a>
+  <a class="mobile-link" href="writing.html">Writing</a>
+  <a class="mobile-link" href="art.html">Visual Art</a>
+  <a class="mobile-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</div>
+
+<!-- HERO — text stacked above one large image on the left, 2x2 grid of 4 images on the right -->
+<div class="wrap hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-text">
+        <h1 class="hero-statement display">I build campaigns, stories, and art that connect.</h1>
+        <p class="hero-sub">Creative strategist and storyteller designing campaigns for large-scale university clubs, writing work published in the <b>alumni UBC Magazine</b>, and making visual art across painting and graphite.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="work.html">View Selected Work →</a>
+          <a class="btn-secondary" href="#">Download Résumé</a>
+        </div>
+      </div>
+
+      <a class="hero-tile" href="https://magazine.alumni.ubc.ca/2026/campus/extraordinary-moments-ubc-vignettes-ill-never-forget" target="_blank" rel="noopener">
+        <video autoplay muted loop playsinline poster="images/extraordinary-moments-poster.jpg">
+          <source src="images/extraordinary-moments.mp4" type="video/mp4">
+        </video>
+        <div class="cap">
+          <div class="t">Extraordinary Moments</div>
+          <div class="m">Published — UBC Alumni Magazine ↗</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 2x2 grid of 4 pieces -->
+    <div class="hero-right">
+      <a class="hero-tile" href="work.html#accelerate">
+        <img src="images/eprojects-campaigns/accelerate-poster.jpg" alt="Accelerate campaign poster">
+        <div class="cap">
+          <div class="t">Accelerate</div>
+          <div class="m">Campaign Design</div>
+        </div>
+      </a>
+      <a class="hero-tile" href="art.html">
+        <img src="images/landscapes/abstract-seascape.jpg" alt="Abstract ocean painting">
+        <div class="cap">
+          <div class="t">Abstract Seascape</div>
+          <div class="m">Acrylic</div>
+        </div>
+      </a>
+      <a class="hero-tile" href="graphite.html">
+        <img src="images/rearing-horse.jpg" alt="Rearing Horse graphite drawing" style="object-position:center 20%;">
+        <div class="cap">
+          <div class="t">Rearing Horse</div>
+          <div class="m">Graphite</div>
+        </div>
+      </a>
+      <a class="hero-tile" href="essay-dadi.html">
+        <img src="images/dadi-portrait.jpg" alt="Graphite portrait of Dadi" style="object-position:center 15%;">
+        <div class="cap">
+          <div class="t">Dadi</div>
+          <div class="m">Graphite</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CAMPAIGNS — leads, most relevant to strategist/coordinator roles -->
+<section id="campaigns">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Selected Work</div>
+        <h2 class="display">Campaign Design</h2>
+      </div>
+      <a class="view-all" href="work.html">View all campaigns →</a>
+    </div>
+    <div class="campaign-grid">
+      <a class="campaign-card" href="work.html#launch-party">
+        <div class="campaign-img"><img src="images/eprojects-campaigns/launch-party-final-wide.jpg" alt="Launch Party campaign poster"></div>
+        <div class="campaign-body">
+          <div class="org">UBC eProjects</div>
+          <div class="title">Launch Party</div>
+          <div class="impact">The club's first event to draw real buzz — full design process, sketch to final.</div>
+        </div>
+      </a>
+      <a class="campaign-card" href="work.html#executive-lounge">
+        <div class="campaign-img"><img src="images/eprojects-campaigns/exec-lounge-cover.jpg" alt="Executive Lounge guidebook cover"></div>
+        <div class="campaign-body">
+          <div class="org">UBC eProjects</div>
+          <div class="title">Executive Lounge</div>
+          <div class="impact">The club's flagship event — 20 founder delegates, full branded guidebook.</div>
+        </div>
+      </a>
+      <a class="campaign-card" href="work.html#accelerate">
+        <div class="campaign-img"><img src="images/eprojects-campaigns/accelerate-poster.jpg" alt="Accelerate campaign poster"></div>
+        <div class="campaign-body">
+          <div class="org">UBC eProjects</div>
+          <div class="title">Accelerate</div>
+          <div class="impact">A startup-accelerator connection event, with a countdown follow-up push.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING TEASER -->
+<section class="writing-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Selected Work</div>
+        <h2 class="display">Writing</h2>
+      </div>
+      <a class="view-all" href="writing.html">View all writing →</a>
+    </div>
+    <div class="writing-grid">
+      <a class="writing-card featured" href="https://magazine.alumni.ubc.ca/2026/campus/extraordinary-moments-ubc-vignettes-ill-never-forget" target="_blank" rel="noopener">
+        <div class="genre label">Published — UBC Alumni Magazine ↗</div>
+        <h3>Extraordinary Moments</h3>
+        <p>A collection of campus vignettes, written and illustrated — published externally.</p>
+      </a>
+      <a class="writing-card" href="essay-dadi.html">
+        <div class="genre label">Personal Essay</div>
+        <h3>A Different Kind of Singer</h3>
+        <p>A nonfiction piece about my grandmother, paired with a graphite portrait I sketched to capture her soft expression.</p>
+      </a>
+      <a class="writing-card" href="essay-bottle-caps.html">
+        <div class="genre label">Personal Essay</div>
+        <h3>A Bag of Bottle Caps</h3>
+        <p>On my brother, patience, and what it means to be looked after.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL ART TEASER -->
+<section id="visual-art">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">Selected Work</div>
+        <h2 class="display">Visual Art</h2>
+      </div>
+      <a class="view-all" href="art.html">View all visual art →</a>
+    </div>
+    <div class="art-grid">
+      <a class="art-card" href="simple-or-complex.html">
+        <div class="art-img"><img src="images/simple-or-complex.jpeg" alt="Simple or Complex painting"></div>
+        <div class="art-caption"><div class="t">Simple or Complex</div><div class="m">Mixed media on paper</div></div>
+      </a>
+      <a class="art-card" href="graphite.html">
+        <div class="art-img"><img src="images/rearing-horse.jpg" alt="Rearing Horse graphite drawing" style="object-position:center 20%;"></div>
+        <div class="art-caption"><div class="t">Rearing Horse</div><div class="m">Graphite — A World in Graphite</div></div>
+      </a>
+      <a class="art-card" href="essay-dadi.html">
+        <div class="art-img"><img src="images/dadi-portrait.jpg" alt="Dadi portrait drawing" style="object-position:center 15%;"></div>
+        <div class="art-caption"><div class="t">Dadi</div><div class="m">Graphite — paired with the essay</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<section id="about-teaser">
+  <div class="wrap about-strip">
+    <img src="images/going-to-sckl.jpg" alt="Minhal as a child, backpack on, ready for her first day of school" style="object-position:center 20%;">
+    <div>
+      <p>Born in Karachi, raised partly in Dubai, now based in Vancouver — three cities that shaped how I tell stories and make things.</p>
+      <p>I work across strategy, writing, and visual art because I've never wanted to pick just one.</p>
+      <a class="view-all" href="about.html">Read the full story →</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="display">Let's talk about a piece, a project, or creative work.</h2>
+        <div class="contact-row">
+      <a href="mailto:minhal.hasnain@outlook.com">minhal.hasnain@outlook.com</a>
+      <a href="https://www.linkedin.com/in/minhal-hasnain-a8464b2b0/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/spilling.ink.mh/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="fine-print">Portfolio of Minhal — Updated 2026</div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); });
+  });
+</script>
+
+</body>
+</html>

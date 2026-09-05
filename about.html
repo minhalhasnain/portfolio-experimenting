@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Minhal</title>
+<link rel="stylesheet" href="style.css">
+
+<!--
+  ============================================================
+  HOW TO EDIT THIS FILE
+  ============================================================
+  The big centered name uses an animated gradient — its colors
+  are the two "vivid-blue" variables near the top of style.css,
+  plus your existing navy. Change those hex values there.
+
+  The three cycling labels are in the .roles list below — add,
+  remove, or reorder <span> entries and the rotation adjusts
+  automatically. Timing is set in the <script> at the bottom
+  (currently 2.4s per label).
+
+  Bio paragraphs are plain text further down — replace directly.
+  ============================================================
+-->
+
+<style>
+  .about-hero {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 24px 20px;
+  }
+
+  .name-gradient {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: clamp(3.2rem, 13vw, 8.5rem);
+    line-height: 1;
+    text-transform: lowercase;
+    background: linear-gradient(115deg, var(--vivid-dark) 0%, var(--vivid-blue) 30%, var(--vivid-blue-light) 50%, var(--vivid-blue) 70%, var(--vivid-dark) 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientFlow 9s ease infinite;
+  }
+
+  @keyframes gradientFlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .roles {
+    margin-top: 26px;
+    height: 1.9rem;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy-soft);
+  }
+  .roles span {
+    position: absolute; left: 50%; top: 0;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    white-space: nowrap;
+  }
+  .roles span.active { opacity: 1; }
+
+  .about-divider {
+    width: 40px; height: 1px; background: var(--teal);
+    margin: 26px auto 0;
+  }
+
+  .map-wrap {
+    max-width: 500px;
+    margin: 30px auto 0;
+    padding: 0 24px;
+  }
+  .map-wrap img { width: 100%; height: auto; display: block; }
+  .map-caption {
+    margin-top: 16px;
+    text-align: center;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.98rem;
+    color: var(--navy-soft);
+  }
+
+  .about-bio {
+    max-width: 900px;
+    margin: 30px auto 0;
+    padding: 0 24px 120px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 50px;
+    align-items: start;
+  }
+  .about-headshot img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--navy-faint);
+  }
+  .about-bio-text p {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 22px;
+  }
+  .about-bio-text .label { margin-bottom: 18px; display: block; }
+  .bio-statement {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    line-height: 1.4;
+    color: var(--navy);
+    margin-bottom: 30px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--navy-faint);
+  }
+  .bio-placeholder-box {
+    border: 1px dashed var(--navy-faint);
+    padding: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--navy-soft);
+  }
+  .bio-placeholder-box strong { color: var(--navy); }
+
+  @media (max-width: 700px) {
+    .about-bio { grid-template-columns: 1fr; }
+    .about-headshot { max-width: 260px; margin: 0 auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .name-gradient { animation: none; background-position: 30% 50%; }
+    .roles span { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="mark" href="index.html"><img src="images/signature.png" alt="Minhal signature"></a>
+<nav class="nav-desktop">
+  <a class="nav-link" href="work.html">Campaigns</a>
+  <a class="nav-link" href="writing.html">Writing</a>
+  <a class="nav-link" href="art.html">Visual Art</a>
+  <a class="nav-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</nav>
+<div class="nav-mobile-toggle" id="hamburger"><span></span></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="work.html">Campaigns</a>
+  <a class="mobile-link" href="writing.html">Writing</a>
+  <a class="mobile-link" href="art.html">Visual Art</a>
+  <a class="mobile-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</div>
+
+<!-- SECTION: ABOUT HERO -->
+<div class="about-hero">
+  <div class="name-gradient">Minhal</div>
+  <div class="roles">
+    <span class="active">Storyteller</span>
+    <span>Creative Designer</span>
+    <span>Visual Artist</span>
+  </div>
+  <div class="about-divider"></div>
+
+ <div class="map-wrap">
+    <img src="images/world-map.png" alt="World map with pins marking Vancouver, Dubai, and Karachi" style="width: 100%; height: auto;">
+</div>
+    <p class="map-caption">Karachi – Dubai – Vancouver. Three cities that shaped how I see, and how I make.</p>
+  </div>
+</div>
+
+<!-- SECTION: BIO -->
+<div class="about-bio">
+  <div class="about-headshot">
+    <img src="images/headshot.jpg" alt="Portrait of Minhal">
+  </div>
+  <div class="about-bio-text">
+    <span class="label">Journey</span>
+    <p class="bio-statement">I thrive in the space where storytelling, creative design, and visual art intersect.</p>
+
+      Legend has it my first word was <i>paint</i>.<br>
+      My second one was <i>right</i>.<br> 
+      <br>
+      But now that I think about it, I probably meant <i>write.</i><br>
+      <br>
+      Turns out that's been the throughline ever since: visual storytelling, where images and words do the work together. I trace my interest in it back to three cities. I grew up surrounded by family and <b>Karachi's</b> culture. Then, I moved to <b>Dubai's</b> multicultural city life. Finally, I landed in biophilic <b>Vancouver</b>. Every move inspired a new experience, and every experience inspires a new creation.<br>
+      <br>
+      When I'm not living in my fast-paced, creative world, I'm trying to hit 20 push-ups, playing Yahtzee with my family, and catching up on classic movies – thankfully not all at the same time.
+    </div>
+  </div>
+</div>
+
+  <footer id="contact">
+  <div class="wrap">
+    <h2 class="display">Let's talk about a piece, a project, or creative work.</h2>
+        <div class="contact-row">
+      <a href="mailto:minhal.hasnain@outlook.com">minhal.hasnain@outlook.com</a>
+      <a href="https://www.linkedin.com/in/minhal-hasnain-a8464b2b0/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/spilling.ink.mh/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="fine-print">Portfolio of Minhal — Updated 2026</div>
+  </div>
+</footer>
+  
+<script>
+    const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); });
+  });
+
+  // Cycling role labels
+  const roles = document.querySelectorAll('.roles span');
+  let roleIndex = 0;
+  setInterval(() => {
+    roles[roleIndex].classList.remove('active');
+    roleIndex = (roleIndex + 1) % roles.length;
+    roles[roleIndex].classList.add('active');
+  }, 1500);
+</script>
+
+</body>
+</html>

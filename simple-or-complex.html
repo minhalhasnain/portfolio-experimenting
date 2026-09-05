@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple or Complex — Minhal</title>
+<link rel="stylesheet" href="style.css">
+
+<!--
+  HOW TO EDIT: figcaptions below each development image are
+  placeholders — edit the text between <figcaption> and
+  </figcaption> to add your own titles. The case-desc paragraph
+  near the top is also a placeholder for your project statement.
+-->
+
+<style>
+  .page-hero { padding: 130px 0 20px; }
+  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; }
+  .page-hero p { font-family: 'EB Garamond', serif; font-size: 1.05rem; color: var(--navy-soft); max-width: 60ch; margin-top: 16px; }
+
+  .case { padding: 50px 0 110px; }
+  .case-desc { font-family: 'EB Garamond', serif; font-size: 1.1rem; line-height: 1.75; max-width: 68ch; margin-bottom: 10px; }
+  .final-piece-wrap { margin: 30px 0 40px; }
+  .final-piece-wrap img { width: 100%; max-height: 640px; object-fit: contain; background: var(--grey); border: 1px solid var(--navy-faint); display: block; }
+  .final-piece-caption { font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--navy-soft); margin-top: 10px; }
+
+  .process-note { background: var(--grey); border-left: 3px solid var(--navy); padding: 14px 18px; margin: 20px 0 30px; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--navy-soft); line-height: 1.6; max-width: 68ch; }
+  .process-note strong { color: var(--navy); }
+
+  .case-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .case-gallery img { width: 100%; height: 260px; object-fit: contain; background: var(--grey); border: 1px solid var(--navy-faint); display: block; }
+  .case-gallery figure { margin: 0; }
+  .case-gallery figcaption { font-family: 'Inter', sans-serif; font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--navy-soft); margin-top: 8px; }
+
+  @media (max-width: 860px) { .case-gallery { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .case-gallery { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<a class="mark" href="index.html"><img src="images/signature.png" alt="Minhal — signature"></a>
+<nav class="nav-desktop">
+  <a class="nav-link" href="work.html">Campaigns</a>
+  <a class="nav-link" href="writing.html">Writing</a>
+  <a class="nav-link" href="art.html">Visual Art</a>
+  <a class="nav-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</nav>
+<div class="nav-mobile-toggle" id="hamburger"><span></span></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="work.html">Campaigns</a>
+  <a class="mobile-link" href="writing.html">Writing</a>
+  <a class="mobile-link" href="art.html">Visual Art</a>
+  <a class="mobile-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</div>
+
+<div class="wrap page-hero">
+  <h1 class="display">Simple or Complex</h1>
+  <p>A body of work exploring simplicity and complexity in nature — from a Monet water lily deconstruction to a final piece. Part of the <a href="art.html" style="border-bottom:1px solid var(--navy-faint);">Visual Art portfolio →</a></p>
+</div>
+
+<div class="wrap case">
+  <p class="case-desc">My project explored "Simple or Complex" through subject and medium. The intricate and detailed acrylic rose and swallowtail butterfly paintings alongside impasto flower bushes creates a contrast between complexity and simplicity, further illustrated through the artistic medium of realism and impressionsim.</p>
+
+  <div class="final-piece-wrap">
+    <img src="images/simple-or-complex-dev/final-piece-hires.jpg" alt="Simple or Complex final piece">
+    <div class="final-piece-caption">Final piece — mixed media on paper</div>
+  </div>
+
+  <div class="process-note"><strong>Development:</strong> from initial research into simplicity and complexity in nature, through a Monet water lily deconstruction study, charcoal and pastel studies, to the final piece.</div>
+
+  <div class="case-gallery">
+    <figure><img src="images/simple-or-complex-dev/dev-01-initial-ideas.jpg" alt="Initial ideas sketchbook page"><figcaption>Initial ideas</figcaption></figure>
+    <figure><img src="images/simple-or-complex-dev/dev-02-simple-or-complex-title.jpg" alt="Simple or Complex title spread with butterfly wing stencil"><figcaption>Title spread — paper stencil</figcaption></figure>
+    <figure><img src="images/simple-or-complex-dev/dev-03-monet-deconstruction.jpg" alt="Deconstruction of Monet's Water Lily Pond study"><figcaption>Deconstruction of Monet's Water Lily Pond</figcaption></figure>
+    <figure><img src="images/simple-or-complex-dev/dev-04-charcoal-lily-study.jpg" alt="Charcoal water lily study"><figcaption>Charcoal lily study</figcaption></figure>
+    <figure><img src="images/simple-or-complex-dev/dev-05-lily-dragonfly-study.jpg" alt="Water lily and dragonfly study"><figcaption>Lily &amp; dragonfly study</figcaption></figure>
+    <figure><img src="images/simple-or-complex-dev/dev-06-further-development.jpg" alt="Further development water lily oil studies"><figcaption>Further development</figcaption></figure>
+    <figure><img src="images/simple-or-complex-dev/dev-07-pastel-peony-study.jpg" alt="Pastel peony study"><figcaption>Pastel peony study</figcaption></figure>
+    <figure><img src="images/simple-or-complex-dev/dev-08-pastel-rose-study.jpg" alt="Pastel rose study"><figcaption>Pastel rose study</figcaption></figure>
+    <figure><img src="images/simple-or-complex-dev/dev-09-large-lily-study.jpg" alt="Large water lily pond study"><figcaption>Large lily pond study</figcaption></figure>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="display">Let's talk about a piece, a project, or creative work.</h2>
+        <div class="contact-row">
+      <a href="mailto:minhal.hasnain@outlook.com">minhal.hasnain@outlook.com</a>
+      <a href="https://www.linkedin.com/in/minhal-hasnain-a8464b2b0/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/spilling.ink.mh/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="fine-print">Portfolio of Minhal — Updated 2026</div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); });
+  });
+</script>
+</body>
+</html>

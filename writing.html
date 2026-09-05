@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — Minhal</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .page-hero { padding: 130px 0 20px; }
+  .page-hero-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; }
+  .page-hero p { font-family: 'EB Garamond', serif; font-size: 1.05rem; color: var(--navy-soft); max-width: 55ch; margin-top: 16px; }
+
+  .substack-dropdown { position: relative; }
+  .substack-toggle {
+    font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+    border: 1px solid var(--navy-faint); padding: 10px 18px; cursor: pointer; background: var(--cream);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .substack-toggle .caret { transition: transform 0.2s ease; font-size: 0.65rem; }
+  .substack-dropdown.open .substack-toggle .caret { transform: rotate(180deg); }
+  .substack-menu {
+    position: absolute; top: calc(100% + 6px); right: 0; z-index: 20;
+    background: var(--cream); border: 1px solid var(--navy-faint);
+    box-shadow: 0 14px 30px rgba(16,41,55,0.14);
+    min-width: 200px; padding: 8px 0;
+    opacity: 0; visibility: hidden; transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  .substack-dropdown.open .substack-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+  .substack-menu a {
+    display: block; padding: 10px 18px; font-family: 'Inter', sans-serif; font-size: 0.8rem;
+  }
+  .substack-menu a:hover { background: var(--teal); }
+
+  .featured-essay {
+    display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px;
+    border: 1px solid var(--navy-faint);
+    margin: 60px 0; overflow: hidden;
+  }
+  .featured-essay img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
+  .featured-essay-text { padding: 40px 40px 40px 0; display: flex; flex-direction: column; justify-content: center; }
+  .featured-essay .label { margin-bottom: 14px; }
+  .featured-essay h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 14px; }
+  .featured-essay p.blurb { font-family: 'EB Garamond', serif; font-size: 1.08rem; color: var(--navy-soft); line-height: 1.6; margin-bottom: 20px; }
+  .featured-essay .read-link { font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--navy); padding-bottom: 2px; align-self: flex-start; }
+
+  .essay-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding-bottom: 40px; }
+  .essay-card { border: 1px solid var(--navy-faint); padding: 30px; display: block; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .essay-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(16,41,55,0.1); }
+  .essay-card .genre { margin-bottom: 12px; }
+  .essay-card h3 { font-family: 'Libre Baskerville', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+  .essay-card p { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1rem; color: var(--navy-soft); line-height: 1.6; }
+  .essay-card .meta { margin-top: 16px; font-family: 'Inter', sans-serif; font-size: 0.68rem; letter-spacing: 0.05em; color: var(--navy-faint); }
+  .essay-card.has-image { display: grid; grid-template-columns: 110px 1fr; gap: 18px; align-items: start; }
+  .essay-card.has-image img { width: 110px; height: 140px; object-fit: cover; border: 1px solid var(--navy-faint); }
+
+  /* Substack Callout Box */
+  .substack-banner {
+    border: 1px solid var(--navy-faint);
+    background: var(--cream);
+    padding: 36px 40px;
+    margin-bottom: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .substack-banner:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(16,41,55,0.1);
+  }
+  .substack-banner-content h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .substack-banner-content p {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--navy-soft);
+  }
+  .substack-banner-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--navy);
+    padding: 12px 24px;
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--navy);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .substack-banner-btn:hover {
+    background: var(--navy);
+    color: #fff;
+  }
+
+  @media (max-width: 860px) {
+    .featured-essay { grid-template-columns: 1fr; }
+    .featured-essay img { height: 320px; }
+    .featured-essay-text { padding: 30px; }
+    .essay-list { grid-template-columns: 1fr; }
+    .substack-banner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<a class="mark" href="index.html"><img src="images/signature.png" alt="Minhal — signature"></a>
+<nav class="nav-desktop">
+  <a class="nav-link" href="work.html">Campaigns</a>
+  <a class="nav-link" href="writing.html">Writing</a>
+  <a class="nav-link" href="art.html">Visual Art</a>
+  <a class="nav-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</nav>
+<div class="nav-mobile-toggle" id="hamburger"><span></span></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="work.html">Campaigns</a>
+  <a class="mobile-link" href="writing.html">Writing</a>
+  <a class="mobile-link" href="art.html">Visual Art</a>
+  <a class="mobile-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</div>
+
+<div class="wrap page-hero">
+  <div class="page-hero-row">
+    <div>
+      <h1 class="display">Writing</h1>
+      <p>Personal essays, paired sometimes with a portrait drawn for the same subject.</p>
+    </div>
+    <div class="substack-dropdown" id="substackDropdown">
+      <button class="substack-toggle" id="substackToggle" type="button">More Writing <span class="caret">▾</span></button>
+      <div class="substack-menu">
+        <a href="https://substack.com/@m1nh4l" target="_blank" rel="noopener">Substack ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <a class="featured-essay" href="essay-dadi.html">
+    <img src="images/dadi-portrait.jpg" alt="Graphite portrait of Dadi">
+    <div class="featured-essay-text">
+      <div class="label">Featured — Personal Essay / Nonfiction</div>
+      <h2 class="display">A Different Kind of Singer</h2>
+      <p class="blurb">A nonfiction piece about my grandmother, paired with a graphite portrait I sketched to capture her soft expression.</p>
+      <span class="read-link">Read the essay →</span>
+    </div>
+  </a>
+</div>
+
+<div class="wrap essay-list">
+  <a class="essay-card has-image" href="essay-bottle-caps.html">
+    <img src="images/mustafa-portrait.jpg" alt="Graphite portrait of Mustafa">
+    <div>
+      <div class="genre label">Personal Essay</div>
+      <h3>A Bag of Bottle Caps</h3>
+      <p>Little brothers are minions, devious scamps, and, every so often, kind-hearted angels.</p>
+      <div class="meta">January 2025 · 8 min</div>
+    </div>
+  </a>
+
+  <a class="essay-card" href="essay-moves.html">
+    <div class="genre label">Personal Essay</div>
+    <h3>Dealing With Moves</h3>
+    <p>What's it like living, surviving, and — with some luck — thriving in a foreign country, 11,735 kilometers from the warmth of home and the comfort of family?</p>
+    <div class="meta">April 2024 · 8 min</div>
+  </a>
+
+  <a class="essay-card" href="essay-hans-zimmer.html">
+    <div class="genre label">Personal Essay</div>
+    <h3>The Sound of Film</h3>
+    <p>The wondrous impact of the film scores of Hans Zimmer — an appreciation, through the eyes of a devoted fan.</p>
+    <div class="meta">September 2023 · 9 min</div>
+  </a>
+
+  <a class="essay-card" href="https://magazine.alumni.ubc.ca/2026/campus/extraordinary-moments-ubc-vignettes-ill-never-forget" target="_blank" rel="noopener">
+    <div class="genre label">Published — UBC Alumni Magazine ↗</div>
+    <h3>(Extra)ordinary Moments</h3>
+    <p>A collection of campus vignettes, published in the UBC Alumni Magazine.</p>
+    <div class="meta">UBC Alumni Magazine</div>
+  </a>
+</div>
+
+<div class="wrap">
+  <div class="substack-banner">
+    <div class="substack-banner-content">
+      <div class="label" style="margin-bottom: 6px;">More Essays & Updates</div>
+      <h3>Read More on Substack</h3>
+      <p>Subscribe to follow my latest personal essays, sketches, and reflections directly in your inbox.</p>
+    </div>
+    <a class="substack-banner-btn" href="https://substack.com/@m1nh4l" target="_blank" rel="noopener">Visit Substack ↗</a>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="display">Let's talk about a piece, a project, or creative work.</h2>
+        <div class="contact-row">
+      <a href="mailto:minhal.hasnain@outlook.com">minhal.hasnain@outlook.com</a>
+      <a href="https://www.linkedin.com/in/minhal-hasnain-a8464b2b0/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/spilling.ink.mh/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="fine-print">Portfolio of Minhal — Updated 2026</div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const substackDropdown = document.getElementById('substackDropdown');
+  const substackToggle = document.getElementById('substackToggle');
+  substackToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    substackDropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!substackDropdown.contains(e.target)) substackDropdown.classList.remove('open');
+  });
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); });
+  });
+</script>
+</body>
+</html>

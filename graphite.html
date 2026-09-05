@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A World in Graphite — Minhal</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .page-hero { padding: 130px 0 20px; }
+  .page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; max-width: 18ch; }
+  .page-hero p { font-family: 'EB Garamond', serif; font-size: 1.05rem; color: var(--navy-soft); max-width: 55ch; margin-top: 16px; }
+  .full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; padding: 60px 0 110px; }
+  .full-card { border: 1px solid var(--navy-faint); display: block; transition: opacity 0.25s ease; }
+  .full-card:hover { opacity: 0.85; }
+  .full-card.wide { grid-column: span 2; }
+  .full-img { height: 380px; position: relative; overflow: hidden; background: var(--grey); }
+  .full-card.wide .full-img { height: 380px; }
+  .full-img img { width: 100%; height: 100%; object-fit: cover; }
+  .full-caption { padding: 14px 4px 0; }
+  .full-caption .t { font-family:'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 700; }
+  .full-caption .m { font-family:'Inter', sans-serif; font-size: 0.72rem; color: var(--navy-soft); margin-top: 4px; }
+  .empty-slot { border: 1px dashed var(--navy-faint); height: 380px; display: flex; align-items: center; justify-content: center; font-family:'Inter',sans-serif; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy-faint); text-align: center; padding: 20px; }
+  @media (max-width: 860px) {
+    .full-grid { grid-template-columns: 1fr 1fr; }
+    .full-card.wide { grid-column: span 2; }
+  }
+  @media (max-width: 480px) {
+    .full-grid { grid-template-columns: 1fr; }
+    .full-card.wide { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<a class="mark" href="index.html"><img src="images/signature.png" alt="Minhal — signature"></a>
+<nav class="nav-desktop">
+  <a class="nav-link" href="work.html">Campaigns</a>
+  <a class="nav-link" href="writing.html">Writing</a>
+  <a class="nav-link" href="art.html">Visual Art</a>
+  <a class="nav-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</nav>
+<div class="nav-mobile-toggle" id="hamburger"><span></span></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mobile-link" href="work.html">Campaigns</a>
+  <a class="mobile-link" href="writing.html">Writing</a>
+  <a class="mobile-link" href="art.html">Visual Art</a>
+  <a class="mobile-link" href="about.html">About</a>
+  <a class="btn-resume" href="#">Résumé</a>
+</div>
+
+<div class="wrap page-hero">
+  <h1 class="display">A World in Graphite</h1>
+  <p>A dedicated room within Visual Art, for pencil and charcoal work — texture, tone, and patience over color. Part of the <a href="art.html" style="border-bottom:1px solid var(--navy-faint);">full Visual Art portfolio →</a></p>
+</div>
+
+<!--
+  HOW TO EDIT: titles below (the .t divs) are working titles —
+  edit the text directly to swap in your real titles. Dates are
+  taken from the signatures on each piece; adjust if needed.
+-->
+<div class="wrap full-grid">
+  <a class="full-card" href="images/rearing-horse.jpg" target="_blank">
+    <div class="full-img"><img src="images/rearing-horse.jpg" alt="Rearing Horse — graphite drawing" style="object-position:center 15%;"></div>
+    <div class="full-caption"><div class="t">Rearing Horse</div><div class="m">Graphite, 2020</div></div>
+  </a>
+  <a class="full-card" href="images/graphite-collection/graphite-horse-eye-2023.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-horse-eye-2023.jpg" alt="Graphite study of a horse's eye and bridle" style="object-position:center 30%;"></div>
+    <div class="full-caption"><div class="t">Sparkle</div><div class="m">Graphite, June 2023</div></div>
+  </a>
+  <a class="full-card" href="images/mustafa-portrait.jpg" target="_blank">
+    <div class="full-img"><img src="images/mustafa-portrait.jpg" alt="Graphite portrait of Mustafa" style="object-position:center 15%;"></div>
+    <div class="full-caption"><div class="t">Mustafa</div><div class="m">Graphite, May 2026</div></div>
+  </a>
+
+  <a class="full-card wide" href="images/graphite-collection/graphite-cityscape-charcoal.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-cityscape-charcoal.jpg" alt="Charcoal cityscape of domed and spired buildings along a street"></div>
+    <div class="full-caption"><div class="t">Cityscape</div><div class="m">Charcoal &amp; digital brush</div></div>
+  </a>
+  <a class="full-card" href="essay-dadi.html">
+    <div class="full-img"><img src="images/dadi-portrait.jpg" alt="Dadi — graphite portrait" style="object-position:center 12%;"></div>
+    <div class="full-caption"><div class="t">Dadi</div><div class="m">Graphite, 2026 — paired with the essay</div></div>
+  </a>
+
+  <a class="full-card" href="images/graphite-collection/graphite-nana-portrait.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-nana-portrait.jpg" alt="Graphite portrait of Nana" style="object-position:center 15%;"></div>
+    <div class="full-caption"><div class="t">Nana</div><div class="m">Graphite — companion piece to Dadi</div></div>
+  </a>
+  <a class="full-card" href="images/graphite-collection/graphite-shepherd-dog-2025.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-shepherd-dog-2025.jpg" alt="Graphite portrait of a German Shepherd" style="object-position:center 15%;"></div>
+    <div class="full-caption"><div class="t">Loyal Companion</div><div class="m">Graphite, May 2025</div></div>
+  </a>
+  <a class="full-card" href="images/graphite-collection/graphite-dog-floppy-2021.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-dog-floppy-2021.jpg" alt="Graphite portrait of a floppy-eared dog" style="object-position:center 20%;"></div>
+    <div class="full-caption"><div class="t">Ralph</div><div class="m">Graphite, July 2021</div></div>
+  </a>
+
+  <a class="full-card" href="images/graphite-collection/graphite-cat-2024.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-cat-2024.jpg" alt="Pen, ink, and watercolor study of a blue-eyed cat" style="object-position:center 20%;"></div>
+    <div class="full-caption"><div class="t">Bongo</div><div class="m">Pen, ink &amp; watercolor, January 2024</div></div>
+  </a>
+  <a class="full-card" href="images/graphite-collection/graphite-bear-2025.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-bear-2025.jpg" alt="Pen and ink drawing of a bear"></div>
+    <div class="full-caption"><div class="t">Bear</div><div class="m">Pen &amp; ink, February 2025</div></div>
+  </a>
+  <a class="full-card" href="images/graphite-collection/graphite-rhino-2025.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-rhino-2025.jpg" alt="Pen and ink drawing of a rhino's head"></div>
+    <div class="full-caption"><div class="t">Rhino</div><div class="m">Pen &amp; ink, May 2025</div></div>
+  </a>
+
+  <a class="full-card" href="images/graphite-collection/graphite-horse-mane-2024.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-horse-mane-2024.jpg" alt="Graphite drawing of a horse's head and mane" style="object-position:center 25%;"></div>
+    <div class="full-caption"><div class="t">Blaze</div><div class="m">Graphite, August 2024</div></div>
+  </a>
+  <a class="full-card" href="images/graphite-collection/graphite-horse-ear-2023.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-horse-ear-2023.jpg" alt="Graphite drawing of a horse's head, ears and mane" style="object-position:center 20%;"></div>
+    <div class="full-caption"><div class="t">Horse Whisper</div><div class="m">Graphite, August 2023</div></div>
+  </a>
+  <a class="full-card" href="images/graphite-collection/graphite-magnolia-pod.jpg" target="_blank">
+    <div class="full-img"><img src="images/graphite-collection/graphite-magnolia-pod.jpg" alt="Graphite botanical study of a magnolia seed pod" style="object-position:center 15%;"></div>
+    <div class="full-caption"><div class="t">Magnolia Study</div><div class="m">Graphite</div></div>
+  </a>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="display">Let's talk about a piece, a project, or creative work.</h2>
+        <div class="contact-row">
+      <a href="mailto:minhal.hasnain@outlook.com">minhal.hasnain@outlook.com</a>
+      <a href="https://www.linkedin.com/in/minhal-hasnain-a8464b2b0/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/spilling.ink.mh/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="fine-print">Portfolio of Minhal — Updated 2026</div>
+  </div>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); });
+  });
+</script>
+</body>
+</html>
