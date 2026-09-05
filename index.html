@@ -165,7 +165,13 @@
      ============================================================ -->
 <style>
   .namemark {
+    min-height: 75vh;
+    box-sizing: border-box;
     padding: 110px 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
   }
   .namemark-name {
@@ -192,13 +198,13 @@
     margin-top: 18px;
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
     gap: 0.16em;
     flex-wrap: wrap;
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'EB Garamond', serif;
     font-weight: 400;
     font-style: normal;
-    font-size: clamp(1.4rem, 3.2vw, 2.3rem);
+    font-size: clamp(1.1rem, 2.4vw, 1.7rem);
     color: var(--navy);
   }
   .namemark-cyclewrap {
@@ -206,7 +212,7 @@
     display: inline-block;
     height: 1.4em;
     overflow: hidden;
-    vertical-align: bottom;
+    vertical-align: middle;
     transition: width 0.45s cubic-bezier(0.34, 1.2, 0.4, 1);
   }
   .namemark-cyclewrap span {
@@ -215,7 +221,7 @@
     top: 0;
     white-space: nowrap;
     color: var(--vivid-blue);
-    font-weight: 400;
+    font-weight: 500;
     opacity: 0;
     transform: translateY(-120%);
     transition: transform 0.55s cubic-bezier(0.34, 1.45, 0.5, 1), opacity 0.4s ease;
@@ -236,10 +242,11 @@
   }
 
   .namemark-divider {
-    width: 40px;
-    height: 1px;
+    width: 44px;
+    height: 3px;
     background: var(--teal);
     margin: 36px auto 0;
+    border-radius: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -249,7 +256,7 @@
   }
 
   @media (max-width: 860px) {
-    .namemark { padding: 100px 0 30px; }
+    .namemark { min-height: 68vh; padding: 100px 0 30px; }
     .namemark-name { font-size: clamp(2.8rem, 15vw, 6rem); }
     .namemark-divider { margin-top: 28px; }
   }
