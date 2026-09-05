@@ -22,7 +22,7 @@
 
 <style>
   /* ---------- HERO ---------- */
-  .hero { padding: 20px 0 46px; }
+  .hero { padding: 40px 0 46px; }
   .hero-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: 40px; }
   .hero-statement {
     font-size: clamp(1.7rem, 3vw, 2.7rem);
@@ -165,7 +165,7 @@
      ============================================================ -->
 <style>
   .namemark {
-    padding: 110px 0 6px;
+    padding: 110px 0 40px;
     text-align: center;
   }
   .namemark-name {
@@ -203,16 +203,19 @@
   }
   .namemark-cyclewrap {
     position: relative;
-    display: inline-grid;
+    display: inline-block;
     height: 1.4em;
     overflow: hidden;
     vertical-align: bottom;
+    transition: width 0.45s cubic-bezier(0.34, 1.2, 0.4, 1);
   }
   .namemark-cyclewrap span {
-    grid-area: 1 / 1;
+    position: absolute;
+    left: 0;
+    top: 0;
     white-space: nowrap;
     color: var(--vivid-blue);
-    font-weight: 700;
+    font-weight: 400;
     opacity: 0;
     transform: translateY(-120%);
     transition: transform 0.55s cubic-bezier(0.34, 1.45, 0.5, 1), opacity 0.4s ease;
@@ -232,14 +235,23 @@
     opacity: 0;
   }
 
+  .namemark-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--teal);
+    margin: 36px auto 0;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .namemark-name { animation: none; background-position: 30% 50%; }
+    .namemark-cyclewrap { transition: none; }
     .namemark-cyclewrap span { transition: opacity 0.4s ease; transform: none !important; }
   }
 
   @media (max-width: 860px) {
-    .namemark { padding: 100px 0 4px; }
+    .namemark { padding: 100px 0 30px; }
     .namemark-name { font-size: clamp(2.8rem, 15vw, 6rem); }
+    .namemark-divider { margin-top: 28px; }
   }
 </style>
 
@@ -250,17 +262,23 @@
     <span class="namemark-cyclewrap" id="namemarkCycle">
       <span class="active">spotting shapes in the clouds</span>
       <span>talking about clever campaigns</span>
-      <span>making personal memory collages</span>
       <span>planning our next game night</span>
       <span>singing when nobody's home</span>
     </span>
   </div>
+  <div class="namemark-divider"></div>
 </div>
 <script>
   (function () {
     var wrap = document.getElementById('namemarkCycle');
     var spans = Array.prototype.slice.call(wrap.children);
     var idx = 0;
+
+    function sizeTo(span) {
+      wrap.style.width = span.scrollWidth + 'px';
+    }
+    sizeTo(spans[idx]); /* set initial width to match the first phrase */
+
     setInterval(function () {
       var current = spans[idx];
       current.classList.remove('active');
@@ -271,6 +289,7 @@
       void next.offsetWidth; /* force reflow so the reset position applies before animating in */
       next.classList.remove('reset');
       next.classList.add('active');
+      sizeTo(next); /* container width now tracks only the active phrase, so the gap after "You'll find me" stays constant */
       (function (el) {
         setTimeout(function () { el.classList.remove('leaving'); }, 450);
       })(current);
