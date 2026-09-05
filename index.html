@@ -154,13 +154,136 @@
   <a class="btn-resume" href="#">Résumé</a>
 </div>
 
+<!-- ============================================================
+     NAME MARK — a compact, elegant impression before the hero.
+     Same animated-gradient treatment as the About page name, in
+     lowercase Libre Baskerville, sized down so it doesn't compete
+     with the hero below. Underneath, a tagline whose last phrase
+     rolls over on a timer like a scoreboard/odometer flip — new
+     phrase drops in from above while the old one drops out below,
+     rather than a plain crossfade.
+     ============================================================ -->
+<style>
+  .namemark {
+    padding: 130px 0 30px;
+    text-align: center;
+  }
+  .namemark-name {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: clamp(2.75rem, 7.5vw, 5.5rem);
+    line-height: 1;
+    text-transform: lowercase;
+    background: linear-gradient(115deg, #86c8cd 0%, #6db2c8 25%, #415771 50%, #5e72eb 75%, #86c8cd 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: namemarkGradientFlow 9s ease infinite;
+    display: inline-block;
+  }
+  @keyframes namemarkGradientFlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .namemark-tagline-row {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.4em;
+    flex-wrap: wrap;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+    color: var(--navy);
+  }
+  .namemark-cyclewrap {
+    position: relative;
+    display: inline-grid;
+    height: 1.4em;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+  .namemark-cyclewrap span {
+    grid-area: 1 / 1;
+    white-space: nowrap;
+    color: var(--vivid-blue);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-120%);
+    transition: transform 0.55s cubic-bezier(0.34, 1.45, 0.5, 1), opacity 0.4s ease;
+  }
+  .namemark-cyclewrap span.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .namemark-cyclewrap span.leaving {
+    opacity: 0;
+    transform: translateY(120%);
+    transition: transform 0.4s cubic-bezier(0.5, 0, 0.75, 0), opacity 0.3s ease;
+  }
+  .namemark-cyclewrap span.reset {
+    transition: none !important;
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .namemark-name { animation: none; background-position: 30% 50%; }
+    .namemark-cyclewrap span { transition: opacity 0.4s ease; transform: none !important; }
+  }
+
+  @media (max-width: 860px) {
+    .namemark { padding: 130px 0 20px; }
+  }
+</style>
+
+<div class="wrap namemark">
+  <div class="namemark-name">minhal</div>
+  <div class="namemark-tagline-row">
+    <span>You'll find me</span>
+    <span class="namemark-cyclewrap" id="namemarkCycle">
+      <span class="active">spotting shapes in the clouds</span>
+      <span>talking about clever campaigns</span>
+      <span>making memory collages</span>
+      <span>planning game night</span>
+      <span>singing when nobody's home</span>
+    </span>
+  </div>
+</div>
+<script>
+  (function () {
+    var wrap = document.getElementById('namemarkCycle');
+    var spans = Array.prototype.slice.call(wrap.children);
+    var idx = 0;
+    setInterval(function () {
+      var current = spans[idx];
+      current.classList.remove('active');
+      current.classList.add('leaving');
+      var nextIdx = (idx + 1) % spans.length;
+      var next = spans[nextIdx];
+      next.classList.add('reset');
+      void next.offsetWidth; /* force reflow so the reset position applies before animating in */
+      next.classList.remove('reset');
+      next.classList.add('active');
+      (function (el) {
+        setTimeout(function () { el.classList.remove('leaving'); }, 450);
+      })(current);
+      idx = nextIdx;
+    }, 2500);
+  })();
+</script>
+
 <!-- HERO — text stacked above one large image on the left, 2x2 grid of 4 images on the right -->
 <div class="wrap hero">
   <div class="hero-grid">
     <div class="hero-left">
       <div class="hero-text">
         <h1 class="hero-statement display">I build campaigns, stories, and art that connect.</h1>
-        <p class="hero-sub">Creative strategist and storyteller designing campaigns for large-scale university clubs, writing work published in the <b>alumni UBC Magazine</b>, and making visual art across painting and graphite.</p>
+        <p class="hero-sub">Creative strategist and storyteller designing campaigns for large-scale university clubs, writing work published in the <b>UBC Magazine</b>, and making visual art across painting and graphite.</p>
         <div class="hero-ctas">
           <a class="btn-primary" href="work.html">View Selected Work →</a>
           <a class="btn-secondary" href="#">Download Résumé</a>
@@ -173,7 +296,7 @@
         </video>
         <div class="cap">
           <div class="t">Extraordinary Moments</div>
-          <div class="m">Published — UBC Alumni Magazine ↗</div>
+          <div class="m">Published — UBC Magazine ↗</div>
         </div>
       </a>
     </div>
@@ -263,7 +386,7 @@
     </div>
     <div class="writing-grid">
       <a class="writing-card featured" href="https://magazine.alumni.ubc.ca/2026/campus/extraordinary-moments-ubc-vignettes-ill-never-forget" target="_blank" rel="noopener">
-        <div class="genre label">Published — UBC Alumni Magazine ↗</div>
+        <div class="genre label">Published — UBC Magazine ↗</div>
         <h3>Extraordinary Moments</h3>
         <p>A collection of campus vignettes, written and illustrated — published externally.</p>
       </a>
