@@ -198,41 +198,38 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* SKETCHES — five framing the name at full strength in the
-     open space around it, plus one tucked behind the letters
-     themselves at low opacity so it reads as a soft texture
-     rather than competing with the type. */
+  /* SKETCHES — all six sit behind the gradient name (z-index
+     below it), each at its own opacity tuned to how much solid
+     black fill it carries, so all six read as roughly the same
+     visual "weight" rather than some dominating and others
+     vanishing. Arranged in a loose ring around the word's
+     outskirts — top-left/right, mid-left/right, bottom-left/right
+     — deliberately avoiding the dead center of the letters, and
+     spaced apart from each other so none overlap and it doesn't
+     read as cluttered. */
   .namemark-sketches {
     position: absolute;
     inset: 0;
-    z-index: 3;
+    z-index: 1;
     pointer-events: none;
   }
   .namemark-sketches img { position: absolute; height: auto; display: block; }
 
-  .sk-cyclist    { left: 9%;  top: 20%;  width: 12%; max-width: 150px; transform: rotate(-6deg); }
-  .sk-horsegroom { right: 7%; top: 18%;  width: 15%; max-width: 190px; transform: rotate(3deg); }
-  .sk-tennis     { left: 25%; top: 9%;   width: 10%; max-width: 130px; transform: rotate(-3deg); }
-  .sk-reader     { left: 15%; bottom: 19%; width: 9%;  max-width: 120px; transform: rotate(4deg); }
-  .sk-runner     { right: 17%; bottom: 17%; width: 8%;  max-width: 110px; transform: rotate(-4deg); }
-
-  .namemark-sketch-behind {
-    position: absolute;
-    z-index: 1;
-    left: 50%;
-    top: 52%;
-    width: 13%;
-    max-width: 150px;
-    height: auto;
-    transform: translate(-30%, -50%) rotate(-3deg);
-    opacity: 0.15;
-    pointer-events: none;
-  }
+  /* thinner-line sketches get more opacity to stay visible;
+     heavy-fill sketches get less so they don't dominate */
+  .sk-cyclist    { left: 16%; top: 12%;    width: 10%; max-width: 145px; transform: rotate(-6deg); opacity: 0.38; }
+  .sk-horsegroom { right: 12%; top: 10%;   width: 13%; max-width: 175px; transform: rotate(3deg);  opacity: 0.20; }
+  .sk-reader     { left: 8%;  top: 46%;    width: 8%;  max-width: 120px; transform: rotate(4deg) translateY(-50%); opacity: 0.32; }
+  .sk-tennis     { right: 7%; top: 46%;    width: 7%;  max-width: 110px; transform: rotate(-3deg) translateY(-50%); opacity: 0.18; }
+  .sk-seated     { left: 18%; bottom: 12%; width: 8%;  max-width: 115px; transform: rotate(-4deg); opacity: 0.20; }
+  .sk-runner     { right: 15%; bottom: 10%; width: 7%; max-width: 105px; transform: rotate(5deg);  opacity: 0.24; }
 
   @media (max-width: 860px) {
-    .namemark-sketches img { width: 22%; max-width: 78px; }
-    .sk-horsegroom { width: 26%; max-width: 94px; }
-    .namemark-sketch-behind { width: 20%; max-width: 90px; opacity: 0.12; }
+    .sk-cyclist, .sk-horsegroom, .sk-reader, .sk-tennis, .sk-seated, .sk-runner {
+      width: 20%;
+      max-width: 70px;
+    }
+    .sk-horsegroom { width: 24%; max-width: 82px; }
   }
 
   .namemark-tagline-row {
@@ -311,8 +308,8 @@
     <img class="sk-tennis" src="images/sketches/sketch-tennis.png" alt="Ink sketch, tennis player">
     <img class="sk-reader" src="images/sketches/sketch-reader.png" alt="Ink sketch, girl reading">
     <img class="sk-runner" src="images/sketches/sketch-runner.png" alt="Ink sketch, runner">
+    <img class="sk-seated" src="images/sketches/sketch-seated.png" alt="Ink sketch, seated figure">
   </div>
-  <img class="namemark-sketch-behind" src="images/sketches/sketch-seated.png" alt="" aria-hidden="true">
   <div class="namemark-name">minhal</div>
   <div class="namemark-tagline-row">
     <span>You'll find me</span>
