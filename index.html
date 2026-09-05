@@ -165,6 +165,7 @@
      ============================================================ -->
 <style>
   .namemark {
+    position: relative;
     min-height: 75vh;
     box-sizing: border-box;
     padding: 110px 0 40px;
@@ -173,8 +174,11 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow: hidden;
   }
   .namemark-name {
+    position: relative;
+    z-index: 2;
     font-family: 'Libre Baskerville', serif;
     font-weight: 700;
     font-size: clamp(4.5rem, 13.5vw, 10rem);
@@ -194,6 +198,43 @@
     100% { background-position: 0% 50%; }
   }
 
+  /* SKETCHES — five framing the name at full strength in the
+     open space around it, plus one tucked behind the letters
+     themselves at low opacity so it reads as a soft texture
+     rather than competing with the type. */
+  .namemark-sketches {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .namemark-sketches img { position: absolute; height: auto; display: block; }
+
+  .sk-cyclist    { left: 3%;  top: 9%;   width: 12%; max-width: 150px; transform: rotate(-6deg); }
+  .sk-horsegroom { right: 2%; top: 8%;   width: 15%; max-width: 190px; transform: rotate(3deg); }
+  .sk-tennis     { left: 17%; top: 2%;   width: 10%; max-width: 130px; transform: rotate(-3deg); }
+  .sk-reader     { left: 7%;  bottom: 8%; width: 9%;  max-width: 120px; transform: rotate(4deg); }
+  .sk-runner     { right: 9%; bottom: 6%; width: 8%;  max-width: 110px; transform: rotate(-4deg); }
+
+  .namemark-sketch-behind {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 52%;
+    width: 13%;
+    max-width: 150px;
+    height: auto;
+    transform: translate(-30%, -50%) rotate(-3deg);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  @media (max-width: 860px) {
+    .namemark-sketches img { width: 22%; max-width: 78px; }
+    .sk-horsegroom { width: 26%; max-width: 94px; }
+    .namemark-sketch-behind { width: 20%; max-width: 90px; opacity: 0.12; }
+  }
+
   .namemark-tagline-row {
     margin-top: 18px;
     display: flex;
@@ -210,7 +251,7 @@
   .namemark-cyclewrap {
     position: relative;
     display: inline-block;
-    height: 1.4em;
+    height: 1.6em;
     overflow: hidden;
     vertical-align: middle;
     transition: width 0.45s cubic-bezier(0.34, 1.2, 0.4, 1);
@@ -219,6 +260,7 @@
     position: absolute;
     left: 0;
     top: 0;
+    line-height: 1.6em;
     white-space: nowrap;
     color: var(--vivid-blue);
     font-weight: 500;
@@ -263,6 +305,14 @@
 </style>
 
 <div class="wrap namemark">
+  <div class="namemark-sketches">
+    <img class="sk-cyclist" src="images/sketches/sketch-cyclist.png" alt="Ink sketch, cyclist">
+    <img class="sk-horsegroom" src="images/sketches/sketch-horse-groom.png" alt="Ink sketch, horse and groom">
+    <img class="sk-tennis" src="images/sketches/sketch-tennis.png" alt="Ink sketch, tennis player">
+    <img class="sk-reader" src="images/sketches/sketch-reader.png" alt="Ink sketch, girl reading">
+    <img class="sk-runner" src="images/sketches/sketch-runner.png" alt="Ink sketch, runner">
+  </div>
+  <img class="namemark-sketch-behind" src="images/sketches/sketch-seated.png" alt="" aria-hidden="true">
   <div class="namemark-name">minhal</div>
   <div class="namemark-tagline-row">
     <span>You'll find me</span>
