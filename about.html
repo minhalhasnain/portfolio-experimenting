@@ -10,12 +10,13 @@
   ============================================================
   HOW TO EDIT THIS FILE
   ============================================================
-  The headline is now the three cycling phrases in .about-cycle
-  below — add, remove, or reorder <span> entries (each with its
-  own color class: c-storyteller / c-designer / c-artist) and the
-  rotation adjusts automatically. It uses the same "falls into
-  place" flip animation as the landing page tagline. Timing is
-  set in the <script> at the bottom (currently 2.5s per phrase).
+  Page order, top to bottom: cycling headline -> bio (headshot +
+  blurb) -> map. The headline is the three phrases in .about-cycle
+  — add, remove, or reorder <span> entries (each with its own
+  color class: c-storyteller / c-designer / c-artist) and the
+  rotation adjusts automatically. It "falls into place" the same
+  way the landing page tagline does. Timing is set in the second
+  <script> block near the bottom (currently 2.5s per phrase).
 
   Bio paragraphs are plain text further down — replace directly.
   ============================================================
@@ -65,25 +66,10 @@
   .about-cycle .c-designer { color: #5e72eb; }
   .about-cycle .c-artist { color: #FE7F9C; }
 
-  .map-wrap {
-    max-width: 660px;
-    margin: 14px auto 0;
-    padding: 0 24px;
-  }
-  .map-wrap img { width: 100%; height: auto; display: block; }
-  .map-caption {
-    margin-top: 12px;
-    text-align: center;
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: 0.98rem;
-    color: var(--navy-soft);
-  }
-
   .about-bio {
     max-width: 900px;
-    margin: 20px auto 0;
-    padding: 0 24px 120px;
+    margin: 10px auto 0;
+    padding: 0 24px;
     text-align: left;
     display: grid;
     grid-template-columns: 0.85fr 1.15fr;
@@ -112,15 +98,26 @@
     padding-bottom: 24px;
     border-bottom: 1px solid var(--navy-faint);
   }
-  .bio-placeholder-box {
-    border: 1px dashed var(--navy-faint);
-    padding: 24px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    line-height: 1.7;
+
+  .about-map-section {
+    max-width: 900px;
+    margin: 50px auto 0;
+    padding: 0 24px 100px;
+    text-align: center;
+  }
+  .map-wrap {
+    max-width: 660px;
+    margin: 0 auto;
+  }
+  .map-wrap img { width: 100%; height: auto; display: block; }
+  .map-caption {
+    margin-top: 12px;
+    text-align: center;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.98rem;
     color: var(--navy-soft);
   }
-  .bio-placeholder-box strong { color: var(--navy); }
 
   @media (max-width: 700px) {
     .about-bio { grid-template-columns: 1fr; }
@@ -151,21 +148,16 @@
   <a class="btn-resume" href="#">Résumé</a>
 </div>
 
-<!-- SECTION: ABOUT HERO -->
+<!-- SECTION: ABOUT HERO — cycling headline only -->
 <div class="about-hero">
   <div class="about-cycle" id="aboutCycle">
     <span class="active c-storyteller">Storyteller</span>
     <span class="c-designer">Creative Designer</span>
     <span class="c-artist">Visual Artist</span>
   </div>
-
- <div class="map-wrap">
-    <img src="images/world-map.png" alt="World map with pins marking Vancouver, Dubai, and Karachi" style="width: 100%; height: auto;">
-</div>
-  <p class="map-caption">Karachi – Dubai – Vancouver. Three cities that shaped how I see, and how I make.</p>
 </div>
 
-<!-- SECTION: BIO -->
+<!-- SECTION: BIO — moved up, right after the headline -->
 <div class="about-bio">
   <div class="about-headshot">
     <img src="images/headshot.jpg" alt="Portrait of Minhal">
@@ -185,7 +177,15 @@
     </div>
   </div>
 
-  <footer id="contact">
+<!-- SECTION: MAP — moved down, below the bio -->
+<div class="about-map-section">
+  <div class="map-wrap">
+    <img src="images/world-map.png" alt="World map with pins marking Vancouver, Dubai, and Karachi" style="width: 100%; height: auto;">
+  </div>
+  <p class="map-caption">Karachi – Dubai – Vancouver. Three cities that shaped how I see, and how I make.</p>
+</div>
+
+<footer id="contact">
   <div class="wrap">
     <h2 class="display">Let's talk about a piece, a project, or creative work.</h2>
         <div class="contact-row">
@@ -196,19 +196,28 @@
     <div class="fine-print">Portfolio of Minhal — Updated 2026</div>
   </div>
 </footer>
-  
-<script>
-    const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
-  document.querySelectorAll('.mobile-menu a').forEach(a => {
-    a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); });
-  });
 
-  // Cycling headline — falls into place rather than fading
-  (function () {
-    var wrap = document.getElementById('aboutCycle');
-    var spans = Array.prototype.slice.call(wrap.children);
+<script>
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-menu a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+  }
+</script>
+
+<script>
+  var aboutCycleWrap = document.getElementById('aboutCycle');
+  if (aboutCycleWrap) {
+    var spans = Array.prototype.slice.call(aboutCycleWrap.children);
     var idx = 0;
     setInterval(function () {
       var current = spans[idx];
@@ -217,7 +226,7 @@
       var nextIdx = (idx + 1) % spans.length;
       var next = spans[nextIdx];
       next.classList.add('reset');
-      void next.offsetWidth; /* force reflow so the reset position applies before animating in */
+      void next.offsetWidth;
       next.classList.remove('reset');
       next.classList.add('active');
       (function (el) {
@@ -225,7 +234,7 @@
       })(current);
       idx = nextIdx;
     }, 2500);
-  })();
+  }
 </script>
 
 </body>
