@@ -10,14 +10,12 @@
   ============================================================
   HOW TO EDIT THIS FILE
   ============================================================
-  The big centered name uses an animated gradient — its colors
-  are the two "vivid-blue" variables near the top of style.css,
-  plus your existing navy. Change those hex values there.
-
-  The three cycling labels are in the .roles list below — add,
-  remove, or reorder <span> entries and the rotation adjusts
-  automatically. Timing is set in the <script> at the bottom
-  (currently 2.4s per label).
+  The headline is now the three cycling phrases in .about-cycle
+  below — add, remove, or reorder <span> entries (each with its
+  own color class: c-storyteller / c-designer / c-artist) and the
+  rotation adjusts automatically. It uses the same "falls into
+  place" flip animation as the landing page tagline. Timing is
+  set in the <script> at the bottom (currently 2.5s per phrase).
 
   Bio paragraphs are plain text further down — replace directly.
   ============================================================
@@ -27,61 +25,54 @@
   .about-hero {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center;
-    padding: 100px 24px 20px;
+    padding: 90px 24px 10px;
   }
 
-  .name-gradient {
-    font-family: 'Libre Baskerville', serif;
-    font-weight: 700;
-    font-size: clamp(3.2rem, 13vw, 8.5rem);
-    line-height: 1;
-    text-transform: lowercase;
-    background: linear-gradient(115deg, var(--vivid-dark) 0%, var(--vivid-blue) 30%, var(--vivid-blue-light) 50%, var(--vivid-blue) 70%, var(--vivid-dark) 100%);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradientFlow 9s ease infinite;
-  }
-
-  @keyframes gradientFlow {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .roles {
-    margin-top: 26px;
-    height: 1.9rem;
+  .about-cycle {
     position: relative;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.15rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--navy-soft);
+    height: 1.35em;
+    overflow: hidden;
   }
-  .roles span {
-    position: absolute; left: 50%; top: 0;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.7s ease;
+  .about-cycle span {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    line-height: 1.35em;
     white-space: nowrap;
+    font-family: 'EB Garamond', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    opacity: 0;
+    transform: translateX(-50%) translateY(-120%);
+    transition: transform 0.55s cubic-bezier(0.34, 1.45, 0.5, 1), opacity 0.4s ease;
   }
-  .roles span.active { opacity: 1; }
-
-  .about-divider {
-    width: 40px; height: 1px; background: var(--teal);
-    margin: 26px auto 0;
+  .about-cycle span.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
+  .about-cycle span.leaving {
+    opacity: 0;
+    transform: translateX(-50%) translateY(120%);
+    transition: transform 0.4s cubic-bezier(0.5, 0, 0.75, 0), opacity 0.3s ease;
+  }
+  .about-cycle span.reset {
+    transition: none !important;
+    transform: translateX(-50%) translateY(-120%);
+    opacity: 0;
+  }
+  .about-cycle .c-storyteller { color: var(--teal); }
+  .about-cycle .c-designer { color: #5e72eb; }
+  .about-cycle .c-artist { color: #FE7F9C; }
 
   .map-wrap {
-    max-width: 500px;
-    margin: 30px auto 0;
+    max-width: 660px;
+    margin: 14px auto 0;
     padding: 0 24px;
   }
   .map-wrap img { width: 100%; height: auto; display: block; }
   .map-caption {
-    margin-top: 16px;
+    margin-top: 12px;
     text-align: center;
     font-family: 'EB Garamond', serif;
     font-style: italic;
@@ -91,7 +82,7 @@
 
   .about-bio {
     max-width: 900px;
-    margin: 30px auto 0;
+    margin: 20px auto 0;
     padding: 0 24px 120px;
     text-align: left;
     display: grid;
@@ -137,8 +128,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .name-gradient { animation: none; background-position: 30% 50%; }
-    .roles span { transition: none; }
+    .about-cycle span { transition: opacity 0.4s ease; transform: translateX(-50%) !important; }
   }
 </style>
 </head>
@@ -163,19 +153,16 @@
 
 <!-- SECTION: ABOUT HERO -->
 <div class="about-hero">
-  <div class="name-gradient">Minhal</div>
-  <div class="roles">
-    <span class="active">Storyteller</span>
-    <span>Creative Designer</span>
-    <span>Visual Artist</span>
+  <div class="about-cycle" id="aboutCycle">
+    <span class="active c-storyteller">Storyteller</span>
+    <span class="c-designer">Creative Designer</span>
+    <span class="c-artist">Visual Artist</span>
   </div>
-  <div class="about-divider"></div>
 
  <div class="map-wrap">
     <img src="images/world-map.png" alt="World map with pins marking Vancouver, Dubai, and Karachi" style="width: 100%; height: auto;">
 </div>
-    <p class="map-caption">Karachi – Dubai – Vancouver. Three cities that shaped how I see, and how I make.</p>
-  </div>
+  <p class="map-caption">Karachi – Dubai – Vancouver. Three cities that shaped how I see, and how I make.</p>
 </div>
 
 <!-- SECTION: BIO -->
@@ -197,7 +184,6 @@
       When I'm not living in my fast-paced, creative world, I'm trying to hit 20 push-ups, playing Yahtzee with my family, and catching up on classic movies – thankfully not all at the same time.
     </div>
   </div>
-</div>
 
   <footer id="contact">
   <div class="wrap">
@@ -219,14 +205,27 @@
     a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); });
   });
 
-  // Cycling role labels
-  const roles = document.querySelectorAll('.roles span');
-  let roleIndex = 0;
-  setInterval(() => {
-    roles[roleIndex].classList.remove('active');
-    roleIndex = (roleIndex + 1) % roles.length;
-    roles[roleIndex].classList.add('active');
-  }, 1500);
+  // Cycling headline — falls into place rather than fading
+  (function () {
+    var wrap = document.getElementById('aboutCycle');
+    var spans = Array.prototype.slice.call(wrap.children);
+    var idx = 0;
+    setInterval(function () {
+      var current = spans[idx];
+      current.classList.remove('active');
+      current.classList.add('leaving');
+      var nextIdx = (idx + 1) % spans.length;
+      var next = spans[nextIdx];
+      next.classList.add('reset');
+      void next.offsetWidth; /* force reflow so the reset position applies before animating in */
+      next.classList.remove('reset');
+      next.classList.add('active');
+      (function (el) {
+        setTimeout(function () { el.classList.remove('leaving'); }, 450);
+      })(current);
+      idx = nextIdx;
+    }, 2500);
+  })();
 </script>
 
 </body>
