@@ -198,15 +198,19 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* SKETCHES — all six sit behind the gradient name (z-index
-     below it), each at its own opacity tuned to how much solid
-     black fill it carries, so all six read as roughly the same
-     visual "weight" rather than some dominating and others
-     vanishing. Arranged in a loose ring around the word's
-     outskirts — top-left/right, mid-left/right, bottom-left/right
-     — deliberately avoiding the dead center of the letters, and
-     spaced apart from each other so none overlap and it doesn't
-     read as cluttered. */
+  /* SKETCHES — positioned relative to the WORD itself (via
+     .namemark-word-wrap below), not the whole section. That
+     means left:0%/100% always equals the word's own left/right
+     edge, and bottom:0% always equals its baseline — so "don't
+     go below the baseline" is just bottom >= 0, guaranteed at
+     any screen size, rather than an approximation. All six sit
+     behind the gradient name (z-index below it) and are sized
+     small enough to gather closely around the word without
+     reaching the top of the section. */
+  .namemark-word-wrap {
+    position: relative;
+    display: inline-block;
+  }
   .namemark-sketches {
     position: absolute;
     inset: 0;
@@ -217,19 +221,20 @@
 
   /* thinner-line sketches get more opacity to stay visible;
      heavy-fill sketches get less so they don't dominate */
-  .sk-cyclist    { left: 3%;  bottom: 15%; width: 13%; max-width: 150px; transform: rotate(-6deg); opacity: 0.38; }
-  .sk-tennis     { left: 17%; top: 8%;     width: 9%;  max-width: 125px; transform: rotate(-4deg); opacity: 0.18; }
-  .sk-seated     { left: 34%; top: 10%;    width: 10%; max-width: 135px; transform: rotate(3deg);  opacity: 0.20; }
-  .sk-reader     { left: 49%; top: 0%;     width: 11%; max-width: 150px; transform: rotate(-3deg); opacity: 0.32; }
-  .sk-horsegroom { left: 62%; top: 6%;     width: 19%; max-width: 230px; transform: rotate(2deg);  opacity: 0.20; }
-  .sk-runner     { left: 82%; top: 18%;    width: 8%;  max-width: 110px; transform: rotate(4deg);  opacity: 0.24; }
+  .sk-cyclist    { left: -3%; bottom: 0%;  width: 20%; max-width: 100px; transform: rotate(-6deg); opacity: 0.50; }
+  .sk-tennis     { left: 8%;  bottom: 55%; width: 15%; max-width: 85px;  transform: rotate(-4deg); opacity: 0.32; }
+  .sk-seated     { left: 30%; bottom: 55%; width: 16%; max-width: 92px;  transform: rotate(3deg);  opacity: 0.34; }
+  .sk-reader     { left: 50%; bottom: 70%; width: 17%; max-width: 100px; transform: rotate(-3deg); opacity: 0.45; }
+  .sk-horsegroom { left: 60%; bottom: 58%; width: 24%; max-width: 140px; transform: rotate(2deg);  opacity: 0.34; }
+  .sk-runner     { left: 86%; bottom: 15%; width: 14%; max-width: 80px;  transform: rotate(4deg);  opacity: 0.38; }
 
   @media (max-width: 860px) {
-    .sk-cyclist, .sk-horsegroom, .sk-reader, .sk-tennis, .sk-seated, .sk-runner {
-      width: 20%;
-      max-width: 70px;
-    }
-    .sk-horsegroom { width: 24%; max-width: 82px; }
+    .sk-cyclist    { max-width: 62px; }
+    .sk-tennis     { max-width: 53px; }
+    .sk-seated     { max-width: 57px; }
+    .sk-reader     { max-width: 62px; }
+    .sk-horsegroom { max-width: 88px; }
+    .sk-runner     { max-width: 50px; }
   }
 
   .namemark-tagline-row {
@@ -302,15 +307,17 @@
 </style>
 
 <div class="wrap namemark">
-  <div class="namemark-sketches">
-    <img class="sk-cyclist" src="images/sketches/sketch-cyclist.png" alt="Ink sketch, cyclist">
-    <img class="sk-horsegroom" src="images/sketches/sketch-horse-groom.png" alt="Ink sketch, horse and groom">
-    <img class="sk-tennis" src="images/sketches/sketch-tennis.png" alt="Ink sketch, tennis player">
-    <img class="sk-reader" src="images/sketches/sketch-reader.png" alt="Ink sketch, girl reading">
-    <img class="sk-runner" src="images/sketches/sketch-runner.png" alt="Ink sketch, runner">
-    <img class="sk-seated" src="images/sketches/sketch-seated.png" alt="Ink sketch, seated figure">
+  <div class="namemark-word-wrap">
+    <div class="namemark-sketches">
+      <img class="sk-cyclist" src="images/sketches/sketch-cyclist.png" alt="Ink sketch, cyclist">
+      <img class="sk-horsegroom" src="images/sketches/sketch-horse-groom.png" alt="Ink sketch, horse and groom">
+      <img class="sk-tennis" src="images/sketches/sketch-tennis.png" alt="Ink sketch, tennis player">
+      <img class="sk-reader" src="images/sketches/sketch-reader.png" alt="Ink sketch, girl reading">
+      <img class="sk-runner" src="images/sketches/sketch-runner.png" alt="Ink sketch, runner">
+      <img class="sk-seated" src="images/sketches/sketch-seated.png" alt="Ink sketch, seated figure">
+    </div>
+    <div class="namemark-name">minhal</div>
   </div>
-  <div class="namemark-name">minhal</div>
   <div class="namemark-tagline-row">
     <span>You'll find me</span>
     <span class="namemark-cyclewrap" id="namemarkCycle">
